@@ -30,6 +30,7 @@ class ProductTest extends TestCase
     {
 
 
+        // add category first to test product data
         $data = [
             'name' => "sport"
         ];
@@ -43,8 +44,10 @@ class ProductTest extends TestCase
 
 
 
+            // make fake file to test file upload
         $file=File::create('iphone.jpeg',300);
 
+        // submit this data to products table
         $data = [
             'name' => "iphone",
             'description'=>'lorem empsum dolor anatako',
@@ -62,10 +65,14 @@ class ProductTest extends TestCase
             ->assertJsonFragment($response->original);
 
 
+            // check if data exsist in database
+
         $this->assertDatabaseHas('products',[
             'name' => "iphone",
         ]);
 
+
+        // check if path field not null and has photo directory
           $image=Image::latest()->first();
 
           $this->assertNotNull($image->path);
@@ -78,7 +85,6 @@ class ProductTest extends TestCase
     {
 
         $response = $this->json('DELETE', 'api/deleteProduct/1');
-        //  print_r($response->original) ;
         $response
             ->assertStatus(200)
             ->assertJsonFragment($response->original);

@@ -18,6 +18,9 @@ class CategoryController extends Controller
         $this->category = $category;
     }
 
+
+    // ----------------------------------------get category-------------------------------------
+
     function getCategories()
     {
         $categories = $this->category->getCategories();
@@ -31,6 +34,8 @@ class CategoryController extends Controller
     }
 
 
+    // ----------------------------------------add new category-------------------------------------
+
     function addNewCategory(CategoryRequest $request)
     {
         $category = $this->category->addNewCategory($request);
@@ -41,6 +46,9 @@ class CategoryController extends Controller
         }
         return  response()->json(['error' => "something was wrong"]);
     }
+
+
+    // ----------------------------------------delete category-------------------------------------
 
     function deleteCategory($id)
     {

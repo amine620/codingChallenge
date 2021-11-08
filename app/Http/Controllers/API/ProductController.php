@@ -17,6 +17,9 @@ use UploadFileService;
 class ProductController extends Controller
 {
 
+    // the getProduct() , addNewProduct() , deleteproduct() those methods comming 
+    // from Product Interface implemented inside EloquentProduct class
+
     protected $product;
 
     public function __construct(ProductInterface $product)
@@ -25,8 +28,10 @@ class ProductController extends Controller
     }
 
 
+    // ----------------------------------------get products-------------------------------------
     function getProducts()
     {
+
         $products = $this->product->getProducts();
 
         if ($products) {
@@ -38,15 +43,25 @@ class ProductController extends Controller
         return  response()->json(['error' => "something was wrong"]);
     }
 
+    // ----------------------------------------add new product-------------------------------------
+
+
     function addNewProduct(ProductRequest $request, ServiceForUploadingFile $uploadFileService)
     {
         $product = $this->product->addNewProduct($request);;
 
+        // this to add the productId and categoryId in the join table
         $product->categories()->syncWithoutDetaching($request->category_id);
 
+        // check if the imput field has file or not
         if ($request->hasFile('photo')) {
+
+            // take the path from Storage Facade inside service class 
             $path = $uploadFileService->takeFilePath($request->file("photo"), "productImages");
 
+            // save path name and and model inside images table 
+            // NOTICE : i use the morph relationship and make one single table called image 
+            // that we can using it to store all images from different model
             $product->images()->save(new Image(["path" => $path]));
         }
 
@@ -57,6 +72,9 @@ class ProductController extends Controller
         }
         return  response()->json(['error' => "something was wrong"]);
     }
+
+
+    // ----------------------------------------delete product-------------------------------------
 
     function deleteProduct($id)
     {
