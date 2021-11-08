@@ -13,7 +13,7 @@ like delete add and view products
 
 ## Installing / Getting started
 
-to setup the project on ur machine please follow thoes command bellow
+to setup the project on ur machine please follow those command bellow
 
 
 first clone this projct using
