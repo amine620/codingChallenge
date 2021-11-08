@@ -5,8 +5,9 @@
 
 
 
-# Name of the project : challenge app using laravel and vuejs
+#  challenge app using laravel and vuejs
 > description
+<br>
 the project is a simple store of products and categories with simple operation
 like delete add and view products
 
@@ -56,7 +57,10 @@ laravel vuejs
 ### Prerequisites
 
 node v8 or +
+<br>
 php 7.4 or +
+<br>
+composer v2 or +
 
 
 ### Setting up Dev
