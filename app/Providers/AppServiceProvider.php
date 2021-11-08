@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Repositories\Category\CategoryInterface;
+use App\Repositories\Category\EloquentCategory;
+use App\Repositories\Product\EloquentProduct;
+use App\Repositories\Product\ProductInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,9 +15,16 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+    protected $repositories=[
+        CategoryInterface::class=>EloquentCategory::class,
+        ProductInterface::class => EloquentProduct::class,
+    ];
     public function register()
     {
-        //
+        foreach ($this->repositories as $interface => $implementation) {
+            
+            $this->app->bind($interface ,$implementation);
+        }
     }
 
     /**
