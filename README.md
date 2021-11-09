@@ -10,6 +10,7 @@
 <br>
 the project is a simple store of products and categories with simple operation
 like delete add and view products
+<a href="http://159.65.25.101/" target="_blank"> is deployed now on digital ocean and is runing inside a docker environment </a>
 
 ## Installing / Getting started
 
