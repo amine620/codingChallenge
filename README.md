@@ -41,14 +41,14 @@ npm install
 if you are using yarn
 
 ```shell
-yarn install
+yarn 
 ```
 
 then run this command to complie all css and js file 
 
 
 ```shell
-npm run dev
+npm dev
 ```
 
 
